@@ -90,8 +90,7 @@
         <div class="navbar-nav ms-auto p-4 p-lg-0">
             <a href="{% url 'index' %}" class="nav-item nav-link active">Начало</a>
             <a href="{% url 'about' %}" class="nav-item nav-link">Информация</a>
-            <a href="{% url 'service' %}" class="nav-item nav-link">Услуги</a>
-            <a href="{% url 'project' %}" class="nav-item nav-link">Проекти</a>
+            <a href="#" class="nav-item nav-link" data-scroll-to="mb-5">Услуги</a>
             <a href="{% url 'contacts' %}" class="nav-item nav-link">Контакти</a>
         </div>
     </div>
@@ -228,9 +227,6 @@
         <div class="row g-0 mx-lg-0">
             <div class="col-lg-6 ps-lg-0" style="min-height: 400px;">
                 <div class="position-relative h-100">
-                    {#                    <img class="position-absolute img-fluid w-100 h-100" src="{% static "img/about.png" %}"#}
-                    {#                         style="object-fit: cover;" alt="">#}
-
                     <img class="position-absolute img-fluid w-100 h-100" src="{% static "img/about.png" %}"
                          style="object-fit: cover;" alt="">
                 </div>
@@ -437,8 +433,10 @@
                         10. Ако се нуждаете от допълнителна касова брава или друг сигурен механизъм за заключване(резе,
                         греда, розетка, касова брава), майстор ключар може да ви посъветва какво е най-подходящо за Вас
                         и да извърши монтажа;<br>
-                        11. Ако искате да прекодирате касова брава или да смените секретността с нова и други ключове;<br>
-                        12. Ако искате да се монтира, ремонтира, настрои, смени или монтира нов автомат за врата – метална,
+                        11. Ако искате да прекодирате касова брава или да смените секретността с нова и други
+                        ключове;<br>
+                        12. Ако искате да се монтира, ремонтира, настрои, смени или монтира нов автомат за врата –
+                        метална,
                         блиндирана, алуминиева, стъклена, дървена;<br>
                         13. Ако имате нужда от отключване, поправяне на вашия сейф;</p>
 
@@ -536,6 +534,24 @@
 <script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
 <script src="{% static 'lib/isotope/isotope.pkgd.min.js' %}"></script>
 <script src="{% static 'lib/lightbox/js/lightbox.min.js' %}"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        let links = document.querySelectorAll('[data-scroll-to]');
+
+        links.forEach(function (link) {
+            link.addEventListener('click', function (e) {
+                e.preventDefault();
+                let targetClass = this.getAttribute('data-scroll-to');
+                let targetElement = document.querySelector('.' + targetClass);
+
+                if (targetElement) {
+                    targetElement.scrollIntoView({behavior: 'smooth'});
+                }
+            });
+        });
+    });
+</script>
 
 <!-- Template Javascript -->
 <script src="{% static 'js/main.js' %}"></script>
